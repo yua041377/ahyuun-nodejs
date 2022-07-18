@@ -12,20 +12,6 @@ oracledb.getConnection(
             console.error(err.message + "아현 2");
             return; 
          }
-
-         connection.execute("select * from TABLE_NAME", [], function (err, result) {
-            if (err) {
-                console.error(err.message + "아현1");
-                doRelease(connection);
-                return;
-            }
-            console.log(result.metaData);  //테이블 스키마
-            console.log(result.rows);  //데이터
-            doRelease(connection);
-            console.log('Connection was successful!');
-        });
-            
-    
     connection.close(
         function(err){
             if(err){
@@ -34,6 +20,7 @@ oracledb.getConnection(
             }
         });
     });
+
 
 function doRelease(connection) {
     connection.release(function (err) {
